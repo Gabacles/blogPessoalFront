@@ -1,0 +1,9 @@
+#img-bg {
+  background-image: url('../../assets/img/uncharted_bg_login.jpg');
+
+  min-height: 961px;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
