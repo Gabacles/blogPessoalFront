@@ -11,6 +11,7 @@ import { RodapeComponent } from './rodape/rodape.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { HomeComponent } from './home/home.component';
+import { TemaComponent } from './tema/tema.component';
 
 
 
@@ -21,7 +22,8 @@ import { HomeComponent } from './home/home.component';
     RodapeComponent,
     EntrarComponent,
     CadastrarComponent,
-    HomeComponent
+    HomeComponent,
+    TemaComponent
   ],
   imports: [
     BrowserModule,
