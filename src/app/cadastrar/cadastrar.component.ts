@@ -41,7 +41,6 @@ export class CadastrarComponent implements OnInit {
     if (this.user.senha != this.confirmarSenha) {
       alert('As senhas não são iguais!')
     } else {
-      alert('ta no else')
       this.authService.cadastrar(this.user).subscribe((resp: User) => {
         this.user = resp
         this.router.navigate(['/entrar'])
