@@ -44,8 +44,8 @@
             <th scope="row">{{tema.id}}</th>
             <td>{{tema.descricao}}</td>
             <td class="d-flex justify-content-end">
-              <a href=""><i class="fa fa-pencil-square text-dark" aria-hidden="true"></i></a>
-              <a href=""><i class="fa fa-trash ml-3 text-dark" aria-hidden="true"></i></a>
+              <a [routerLink]="['/tema-edit', tema.id]"><i class="fa fa-pencil-square text-dark" aria-hidden="true"></i></a>
+              <a [routerLink]="['/tema-delete', tema.id]" href=""><i class="fa fa-trash ml-3 text-dark" aria-hidden="true"></i></a>
             </td>
           </tr>
         </tbody>
