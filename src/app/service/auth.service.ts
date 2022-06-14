@@ -15,27 +15,31 @@ export class AuthService {
     headers: new HttpHeaders().set('Authorization', environment.token),
   };
 
+  refreshToken() {
+    this.token = {
+      headers: new HttpHeaders().set('Authorization', environment.token),
+    };
+  }
+
   entrar(userLogin: UserLogin): Observable<UserLogin> {
     return this.http.post<UserLogin>(
-      'http://localhost:8080/usuarios/logar',
+      'https://dalrovereblog.herokuapp.com/usuarios/logar',
       userLogin
     );
   }
 
   cadastrar(user: User): Observable<User> {
     return this.http.post<User>(
-      'http://localhost:8080/usuarios/cadastrar',
+      'https://dalrovereblog.herokuapp.com/usuarios/cadastrar',
       user
     );
   }
 
   getByIdUser(id: number): Observable<User> {
+    this.refreshToken()
     console.log(environment.token)
     console.log(this.token);
-    return this.http.get<User>(
-      `http://localhost:8080/usuarios/${id}`,
-      {headers: new HttpHeaders().set('Authorization', environment.token)}
-    );
+    return this.http.get<User>(`https://dalrovereblog.herokuapp.com/usuarios/${id}`, this.token);
   }
 
   logado() {

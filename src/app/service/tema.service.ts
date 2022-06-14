@@ -14,33 +14,44 @@ export class TemaService {
     headers: new HttpHeaders().set('Authorization', environment.token),
   };
 
+  refreshToken() {
+    this.token = {
+      headers: new HttpHeaders().set('Authorization', environment.token),
+    };
+  }
+
   getAllTema(): Observable<Tema[]> {
-    return this.http.get<Tema[]>('http://localhost:8080/temas', this.token);
+    this.refreshToken()
+    return this.http.get<Tema[]>('https://dalrovereblog.herokuapp.com/temas', this.token);
   }
 
   getByIdTema(id: number): Observable<Tema>{
-    return this.http.get<Tema>(`http://localhost:8080/temas/${id}`, this.token)
+    this.refreshToken()
+    return this.http.get<Tema>(`https://dalrovereblog.herokuapp.com/temas/${id}`, this.token)
   }
 
   postTema(tema: Tema): Observable<Tema> {
+    this.refreshToken()
     return this.http.post<Tema>(
-      'http://localhost:8080/temas/cadastrar',
+      'https://dalrovereblog.herokuapp.com/temas/cadastrar',
       tema,
       this.token
     );
   }
 
   putTema(tema: Tema): Observable<Tema> {
+    this.refreshToken()
     return this.http.put<Tema>(
-      'http://localhost:8080/temas/atualizar',
+      'https://dalrovereblog.herokuapp.com/temas/atualizar',
       tema,
       this.token
     );
   }
 
   deleteTema(id: number) {
+    this.refreshToken()
     return this.http.delete(
-      `http://localhost:8080/temas/${id}`,
+      `https://dalrovereblog.herokuapp.com/temas/${id}`,
       this.token
     );
   }

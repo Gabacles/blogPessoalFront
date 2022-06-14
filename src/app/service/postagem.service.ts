@@ -17,25 +17,36 @@ export class PostagemService {
     headers: new HttpHeaders().set('Authorization', environment.token),
   };
 
+  refreshToken() {
+    this.token = {
+      headers: new HttpHeaders().set('Authorization', environment.token),
+    };
+  }
+
   getAllPostagem(): Observable<Postagem[]>{
+    this.refreshToken()
     console.log(this.token)
-    return this.http.get<Postagem[]>('http://localhost:8080/postagens', this.token)
+    return this.http.get<Postagem[]>('https://dalrovereblog.herokuapp.com/postagens', this.token)
   }
 
   getPostagemById(id: number): Observable<Postagem>{
-    return this.http.get<Postagem>(`http://localhost:8080/postagens/${id}`, this.token)
+    this.refreshToken()
+    return this.http.get<Postagem>(`https://dalrovereblog.herokuapp.com/postagens/${id}`, this.token)
   }
 
   postPostagem(postagem: Postagem): Observable<Postagem> {
-    return this.http.post<Postagem>('http://localhost:8080/postagens/cadastrar', postagem, this.token)
+    this.refreshToken()
+    return this.http.post<Postagem>('https://dalrovereblog.herokuapp.com/postagens/cadastrar', postagem, this.token)
   }
 
   putPostagem(postagem: Postagem): Observable<Postagem> {
-    return this.http.put<Postagem>('http://localhost:8080/postagens/atualizar', postagem, this.token)
+    this.refreshToken()
+    return this.http.put<Postagem>('https://dalrovereblog.herokuapp.com/postagens/atualizar', postagem, this.token)
   }
 
   deletePostagem(id: number){
-    return this.http.delete(`http://localhost:8080/postagens/${id}`, this.token)
+    this.refreshToken()
+    return this.http.delete(`https://dalrovereblog.herokuapp.com/postagens/${id}`, this.token)
   }
 
 }
